@@ -1,0 +1,1010 @@
+.runway-overview {
+  --ov-ink: #1b2821;
+  --ov-muted: #606c63;
+  --ov-green: #165f48;
+  --ov-border: #dce3dc;
+  --ov-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+  color: var(--ov-ink);
+  container: overview / inline-size;
+  min-width: 0;
+}
+.runway-overview *,
+.runway-overview *::before,
+.runway-overview *::after {
+  box-sizing: border-box;
+}
+.runway-overview button,
+.runway-overview select {
+  font-family: inherit;
+}
+.runway-overview button {
+  cursor: pointer;
+}
+.runway-overview :is(button, select):focus-visible {
+  outline: 3px solid #4a9574;
+  outline-offset: 3px;
+}
+.ov-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ov-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 0 0 25px;
+}
+.ov-heading h1,
+.ov-panel-head h2,
+.ov-panel-head p,
+.ov-heading p,
+.ov-insight h3,
+.ov-insight p {
+  margin: 0;
+}
+.ov-heading h1 {
+  font-size: clamp(32px, 3.1vw, 43px);
+  line-height: 1.12;
+  font-weight: 590;
+  letter-spacing: -0.059em;
+}
+.ov-heading p {
+  margin-top: 7px;
+  color: var(--ov-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.ov-heading p > span {
+  margin: 0 4px;
+  color: #798379;
+}
+.ov-heading-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+}
+.ov-select {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  border: 1px solid #d4dcd3;
+  border-radius: 8px;
+  background: white;
+  color: #35473b;
+}
+.ov-select select {
+  min-height: 39px;
+  width: 100%;
+  appearance: none;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: inherit;
+  outline-offset: 2px;
+  cursor: pointer;
+  padding: 0 32px 0 12px;
+  font-size: 13px;
+  font-weight: 550;
+}
+.ov-select > svg:last-child {
+  position: absolute;
+  right: 11px;
+  pointer-events: none;
+}
+.ov-month-select > svg:first-child {
+  position: absolute;
+  left: 12px;
+  pointer-events: none;
+}
+.ov-month-select select {
+  padding-left: 36px;
+}
+.ov-small-select select {
+  min-height: 31px;
+  padding-left: 11px;
+  padding-right: 28px;
+  font-size: 12px;
+}
+.ov-small-select > svg:last-child {
+  right: 8px;
+}
+.ov-import-button {
+  min-height: 41px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #195e49;
+  color: #fff;
+  border: 1px solid #195640;
+  padding: 0 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 570;
+  transition:
+    background-color 0.16s,
+    transform 0.16s;
+  white-space: nowrap;
+}
+.ov-import-button:hover {
+  background: #104b39;
+}
+.ov-import-button:active,
+.ov-text-link:active {
+  transform: translateY(1px);
+}
+.ov-select:hover {
+  border-color: #9db2a3;
+}
+
+.ov-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0 0 19px;
+}
+.ov-metric {
+  overflow: hidden;
+  min-width: 0;
+  min-height: 144px;
+  border: 1px solid var(--ov-border);
+  border-radius: 12px;
+  padding: 17px 18px 13px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.ov-metric-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #4d5a50;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 550;
+}
+.ov-metric-icon {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 27px;
+  height: 27px;
+  border-radius: 7px;
+  background: #eff4ee;
+  color: #496e55;
+}
+.ov-metric-value {
+  color: #17261d;
+  display: block;
+  margin-top: 10px;
+  font-size: clamp(28px, 2.65vw, 39px);
+  line-height: 1.02;
+  letter-spacing: -0.057em;
+  font-weight: 580;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.ov-metric-bottom {
+  margin-top: auto;
+  padding-top: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3px;
+  min-height: 30px;
+}
+.ov-change {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  flex-wrap: wrap;
+  font-size: 12px;
+  line-height: 1.2;
+}
+.ov-change-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+.ov-change-value.ov-positive {
+  color: #267146;
+}
+.ov-change-value.ov-negative {
+  color: #986334;
+}
+.ov-change-value.ov-steady {
+  color: #647068;
+}
+.ov-change-caption {
+  color: #6b756d;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.ov-sparkline {
+  flex: 0 1 65px;
+  align-self: center;
+  min-width: 29px;
+}
+.ov-metric-featured {
+  isolation: isolate;
+  position: relative;
+  background: radial-gradient(ellipse at top right, #286e50, transparent 74%), #174f3f;
+  border-color: #1b5844;
+}
+.ov-metric-featured::before {
+  z-index: -1;
+  position: absolute;
+  content: '';
+  right: -16px;
+  top: -22px;
+  bottom: 0;
+  width: 48%;
+  background: repeating-linear-gradient(
+    132deg,
+    transparent 0 12px,
+    rgba(200, 236, 200, 0.13) 12.5px 13px,
+    transparent 13px 17px
+  );
+  mask-image: linear-gradient(to left, #000, transparent 94%);
+  pointer-events: none;
+}
+.ov-metric-featured .ov-metric-head {
+  color: #e4f2e6;
+}
+.ov-metric-featured .ov-metric-icon {
+  color: #d0ecd2;
+  background: #ffffff18;
+}
+.ov-metric-featured .ov-metric-value {
+  color: #fff;
+}
+.ov-metric-featured .ov-change-caption {
+  color: #d1ded3;
+}
+.ov-metric-featured .ov-change-value {
+  color: #b9efbf;
+}
+.ov-metric-featured .ov-change-value.ov-negative {
+  color: #f1cd9d;
+}
+.ov-metric-featured .ov-change-value.ov-steady {
+  color: #d9e4da;
+}
+
+.ov-dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.63fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+.ov-panel {
+  min-width: 0;
+  background: white;
+  border: 1px solid var(--ov-border);
+  border-radius: 13px;
+  padding: 20px 21px;
+}
+.ov-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.ov-panel-head h2 {
+  font-size: 19px;
+  letter-spacing: -0.039em;
+  font-weight: 625;
+  line-height: 1.32;
+}
+.ov-panel-head p {
+  color: var(--ov-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 2px;
+}
+.ov-series-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 14px 0 5px;
+}
+.ov-series-legend button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 0;
+  padding: 2px 0;
+  border-radius: 3px;
+  color: #4d5d51;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 540;
+}
+.ov-series-legend button:hover,
+.ov-text-link:hover {
+  color: #123f2b;
+}
+.ov-series-legend i,
+.ov-chart-tooltip i {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+.ov-series-legend .ov-series-off {
+  color: #68736b;
+  text-decoration: line-through;
+}
+.ov-series-legend .ov-series-off i {
+  opacity: 0.35;
+}
+.ov-chart-frame {
+  position: relative;
+  height: 207px;
+  width: 100%;
+  min-width: 0;
+  isolation: isolate;
+}
+.ov-bars {
+  position: absolute;
+  inset: 0;
+}
+.ov-chart-hitareas {
+  position: absolute;
+  inset-block: 3px 0;
+  display: flex;
+}
+.ov-chart-hitareas button {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: 4px;
+  transition: background-color 0.12s;
+}
+.ov-chart-hitareas button.ov-active-month {
+  background: #3867470a;
+}
+.runway-overview .ov-chart-hitareas button:focus-visible {
+  outline-width: 2px;
+  outline-offset: -2px;
+}
+.ov-chart-tooltip {
+  pointer-events: none;
+  position: absolute;
+  top: 6px;
+  min-width: 0;
+  max-width: 100%;
+  color: #263629;
+  background: #fff;
+  border: 1px solid #dbe2da;
+  border-radius: 8px;
+  padding: 10px 12px;
+  box-shadow: 0 5px 15px #21382517;
+  font-size: 12px;
+  line-height: 1.4;
+  z-index: 2;
+}
+.ov-chart-tooltip strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: 650;
+}
+.ov-chart-tooltip > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+  margin-top: 3px;
+}
+.ov-chart-tooltip div span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--ov-muted);
+}
+.ov-chart-tooltip b {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.ov-spend-panel {
+  display: flex;
+  flex-direction: column;
+}
+.ov-spending-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 0;
+}
+.ov-ring {
+  position: relative;
+  width: 172px;
+  height: 172px;
+  flex: 0 0 auto;
+}
+.ov-ring .recharts-pie-sector {
+  cursor: pointer;
+}
+.ov-ring-center {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3px;
+}
+.ov-ring-center span {
+  color: #626f65;
+  line-height: 1.3;
+  font-size: 12px;
+}
+.ov-ring-center strong {
+  color: #243328;
+  letter-spacing: -0.055em;
+  font-size: 26px;
+  font-weight: 610;
+  line-height: 1.1;
+}
+.ov-ring-legend {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 15px;
+  row-gap: 2px;
+}
+.ov-ring-legend button {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 3px;
+  border: 0;
+  text-align: left;
+  background: transparent;
+  color: #4e5d52;
+  font-size: 12px;
+  line-height: 1.4;
+  border-radius: 5px;
+}
+.ov-ring-legend button:hover,
+.ov-ring-legend button[aria-pressed='true'] {
+  background: #f0f4ef;
+}
+.ov-ring-legend i {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+.ov-ring-legend span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ov-ring-legend b {
+  margin-left: auto;
+  color: #2d3d32;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+.ov-empty-chart {
+  flex: 1;
+  height: 100%;
+  min-height: 178px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 14px;
+  text-align: center;
+}
+.ov-empty-chart svg {
+  color: #7d967e;
+  margin-bottom: 6px;
+}
+.ov-empty-chart strong {
+  font-weight: 580;
+  font-size: 15px;
+}
+.ov-empty-chart span,
+.ov-empty-table {
+  color: var(--ov-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ov-transactions-panel {
+  padding: 0;
+  overflow: hidden;
+}
+.ov-transactions-panel .ov-panel-head {
+  padding: 18px 21px 14px;
+}
+.ov-text-link {
+  border: 0;
+  background: transparent;
+  border-radius: 4px;
+  padding: 2px 0;
+  color: var(--ov-green);
+  font-size: 13px;
+  line-height: 1.6;
+  font-weight: 620;
+  white-space: nowrap;
+}
+.ov-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+.ov-transactions {
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+}
+.ov-transactions th,
+.ov-transactions td {
+  text-align: left;
+}
+.ov-transactions th {
+  padding: 8px 6px;
+  border-block: 1px solid #e7ebe6;
+  color: #637066;
+  background: #f8faf7;
+  font-weight: 550;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.ov-transactions td {
+  padding: 11px 5px;
+  border-bottom: 1px solid #edf0eb;
+  font-size: 13px;
+  vertical-align: middle;
+  font-variant-numeric: tabular-nums;
+}
+.ov-transactions tr:last-child td {
+  border-bottom: 0;
+}
+.ov-transactions th:first-child,
+.ov-transactions td:first-child {
+  width: 39%;
+  padding-left: 21px;
+}
+.ov-transactions .ov-tx-category {
+  width: 23%;
+}
+.ov-transactions .ov-tx-date {
+  width: 14%;
+  color: #627066;
+}
+.ov-transactions th:last-child,
+.ov-transactions td:last-child {
+  width: 24%;
+  padding-right: 21px;
+  text-align: right;
+}
+.ov-transactions td:last-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #29372d;
+  font-family: var(--ov-mono);
+  font-size: 12px;
+  font-weight: 500;
+}
+.ov-transactions td.ov-incoming {
+  color: #19764f;
+}
+.ov-transactions .lr-category {
+  max-width: 100%;
+  font-size: 11px;
+}
+.ov-merchant {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+.ov-merchant .lr-merchant-icon {
+  flex: 0 0 auto;
+}
+.ov-merchant-copy {
+  min-width: 0;
+}
+.ov-merchant-copy > span {
+  display: block;
+  font-size: 13px;
+  font-weight: 565;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.ov-merchant-copy small {
+  display: none;
+  color: var(--ov-muted);
+  font-size: 12px;
+  margin-top: 1px;
+}
+.ov-tx-small-category {
+  display: none;
+}
+.ov-empty-table {
+  padding: 15px 21px 25px;
+  margin: 0;
+}
+
+.ov-insight-list {
+  margin-top: 13px;
+}
+.ov-insight {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  padding: 14px 0;
+  border-top: 1px solid #e7ece6;
+}
+.ov-insight:first-child {
+  border-top: 0;
+  padding-top: 5px;
+}
+.ov-insight > div {
+  min-width: 0;
+}
+.ov-insight-icon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: #eaf2e9;
+  color: #4d7956;
+}
+.ov-alert-icon {
+  background: #fbefdc;
+  color: #996a34;
+}
+.ov-insight h3 {
+  font-size: 14px;
+  font-weight: 610;
+  letter-spacing: -0.01em;
+}
+.ov-insight p {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ov-muted);
+}
+.ov-insight-count {
+  margin-left: auto;
+  align-self: center;
+  flex: 0 0 auto;
+  min-width: 23px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 620;
+  font-variant-numeric: tabular-nums;
+  color: #385b43;
+}
+.ov-alert-count {
+  color: #96622e;
+}
+.ov-outlier {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+  border-radius: 8px;
+  padding: 12px 13px;
+  background: #f7f6ed;
+  align-items: center;
+}
+.ov-outlier div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.ov-outlier span {
+  color: #766a49;
+  font-size: 12px;
+  line-height: 1.3;
+}
+.ov-outlier strong {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-top: 3px;
+  font-weight: 580;
+  color: #4a442c;
+  font-size: 13px;
+}
+.ov-outlier b {
+  margin-left: auto;
+  flex: 0 0 auto;
+  color: #805a29;
+  font-size: 12px;
+  font-weight: 560;
+}
+
+@container overview (min-width: 1230px) {
+  .ov-dashboard-grid {
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  }
+  .ov-spending-body {
+    flex-direction: row;
+    gap: 15px;
+  }
+  .ov-ring-legend {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 215px;
+    gap: 5px;
+  }
+  .ov-ring-legend button,
+  .ov-ring-legend b {
+    font-size: 13px;
+  }
+}
+@container overview (max-width: 950px) {
+  .ov-metrics,
+  .ov-dashboard-grid {
+    gap: 12px;
+  }
+  .ov-metric {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .ov-sparkline {
+    flex-basis: 47px;
+  }
+  .ov-dashboard-grid {
+    grid-template-columns: minmax(0, 1.48fr) minmax(0, 1fr);
+  }
+  .ov-panel {
+    padding: 17px 16px;
+  }
+  .ov-ring-legend {
+    column-gap: 6px;
+  }
+  .ov-transactions-panel {
+    padding: 0;
+  }
+  .ov-transactions-panel .ov-panel-head {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .ov-transactions th:first-child,
+  .ov-transactions td:first-child {
+    padding-left: 14px;
+  }
+  .ov-transactions th:last-child,
+  .ov-transactions td:last-child {
+    padding-right: 14px;
+  }
+  .ov-merchant {
+    gap: 6px;
+  }
+  .ov-merchant .lr-merchant-icon {
+    width: 29px;
+    height: 29px;
+  }
+}
+@container overview (max-width: 815px) {
+  .ov-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ov-metric {
+    min-height: 128px;
+    padding: 14px 16px 11px;
+  }
+  .ov-sparkline {
+    flex-basis: 67px;
+  }
+  .ov-transactions .ov-tx-date {
+    display: none;
+  }
+  .ov-merchant-copy small {
+    display: block;
+  }
+  .ov-transactions th:first-child,
+  .ov-transactions td:first-child {
+    width: 47%;
+  }
+  .ov-transactions .ov-tx-category {
+    width: 24%;
+  }
+  .ov-transactions th:last-child,
+  .ov-transactions td:last-child {
+    width: 29%;
+  }
+  .ov-dashboard-grid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  }
+}
+@container overview (max-width: 670px) {
+  .ov-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 18px;
+    gap: 13px;
+  }
+  .ov-heading h1 {
+    font-size: 33px;
+  }
+  .ov-dashboard-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ov-spending-body {
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-around;
+  }
+  .ov-ring-legend {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 235px;
+    row-gap: 2px;
+  }
+  .ov-ring-legend button,
+  .ov-ring-legend b {
+    font-size: 13px;
+  }
+  .ov-transactions .ov-tx-date {
+    display: table-cell;
+  }
+  .ov-merchant-copy small {
+    display: none;
+  }
+  .ov-transactions th:first-child,
+  .ov-transactions td:first-child {
+    width: 39%;
+  }
+  .ov-transactions .ov-tx-category {
+    width: 25%;
+  }
+  .ov-transactions .ov-tx-date {
+    width: 14%;
+  }
+  .ov-transactions th:last-child,
+  .ov-transactions td:last-child {
+    width: 22%;
+  }
+}
+@container overview (max-width: 460px) {
+  .ov-sparkline {
+    display: none;
+  }
+  .ov-metrics {
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .ov-metric {
+    border-radius: 10px;
+    min-height: 120px;
+    padding: 12px 11px 10px;
+  }
+  .ov-metric-head {
+    gap: 6px;
+    font-size: 13px;
+  }
+  .ov-metric-icon {
+    width: 23px;
+    height: 23px;
+    border-radius: 6px;
+  }
+  .ov-metric-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+  .ov-metric-value {
+    font-size: clamp(21px, 7.2cqi, 27px);
+  }
+  .ov-metric-value.ov-long-value {
+    font-size: clamp(18px, 6.5cqi, 25px);
+  }
+  .ov-change {
+    gap: 3px;
+  }
+  .ov-change-caption,
+  .ov-change-value {
+    font-size: 12px;
+  }
+  .ov-spending-body {
+    gap: 9px;
+  }
+  .ov-transactions .ov-tx-date {
+    display: none;
+  }
+  .ov-merchant-copy small {
+    display: block;
+  }
+  .ov-transactions .ov-tx-category {
+    display: none;
+  }
+  .ov-transactions th:first-child,
+  .ov-transactions td:first-child {
+    width: 63%;
+  }
+  .ov-transactions th:last-child,
+  .ov-transactions td:last-child {
+    width: 37%;
+  }
+  .ov-tx-small-category {
+    display: inline;
+  }
+}
+@container overview (max-width: 350px) {
+  .ov-heading-actions {
+    gap: 6px;
+  }
+  .ov-month-select select {
+    font-size: 12px;
+    padding-left: 31px;
+    padding-right: 25px;
+  }
+  .ov-month-select > svg:first-child {
+    left: 9px;
+  }
+  .ov-select > svg:last-child {
+    right: 7px;
+  }
+  .ov-import-button {
+    padding-inline: 9px;
+    font-size: 13px;
+    gap: 5px;
+  }
+  .ov-spending-body {
+    flex-direction: column;
+    gap: 0;
+  }
+  .ov-ring-legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: none;
+    column-gap: 7px;
+  }
+  .ov-ring-legend button,
+  .ov-ring-legend b {
+    font-size: 12px;
+  }
+  .ov-transactions .ov-tx-category {
+    display: none;
+  }
+  .ov-transactions th:first-child,
+  .ov-transactions td:first-child {
+    width: 64%;
+  }
+  .ov-transactions th:last-child,
+  .ov-transactions td:last-child {
+    width: 36%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .runway-overview *,
+  .runway-overview *::before,
+  .runway-overview *::after {
+    transition-duration: 0s !important;
+  }
+}
