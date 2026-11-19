@@ -289,8 +289,15 @@ const processState = globalThis as typeof globalThis & {
   __runwayDb?: { path: string; ledger: Ledger };
 };
 
+function defaultDbPath(): string {
+  if (process.env.RUNWAY_DB_PATH) return process.env.RUNWAY_DB_PATH;
+  // Vercel's project directory is read-only; use the writable /tmp mount instead.
+  if (process.env.VERCEL) return '/tmp/runway.db';
+  return join(process.cwd(), 'data', 'runway.sqlite');
+}
+
 function local(): Ledger {
-  const path = process.env.RUNWAY_DB_PATH || join(process.cwd(), 'data', 'runway.sqlite');
+  const path = defaultDbPath();
   if (processState.__runwayDb?.path !== path) {
     processState.__runwayDb?.ledger.close();
     processState.__runwayDb = { path, ledger: openLedger(path) };
